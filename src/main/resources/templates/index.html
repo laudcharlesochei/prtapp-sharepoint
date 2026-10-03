@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>PRT Employee Management System</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+              crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container my-2">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1>PRT Employee Management System</h1>
+                <form th:if="${delegated and currentUser != null}" th:action="@{/logout}" method="post" class="text-right">
+                    <small class="text-muted d-block" th:text="${currentUser}">user@dundee.ac.uk</small>
+                    <button type="submit" class="btn btn-outline-secondary btn-sm">Sign out</button>
+                </form>
+            </div>
+            <hr>
+            <h2>Employee List</h2>
+            <p class="text-muted small">Stored in SharePoint:
+                <a th:href="${siteUrl}" th:text="${siteUrl}" target="_blank" rel="noopener">site</a></p>
+
+            <a th:href="@{/showNewEmployeeForm}" class="btn btn-primary btn-sm mb-3"> Add Employee</a>
+            <br>
+            <table border="1" class="table table-striped table-responsive-md">
+                <thead>
+                    <tr>
+                        <th> First Name</th>
+                        <th> Last Name</th>
+                        <th> Email</th>
+                        <th> Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:if="${#lists.isEmpty(listEmployees)}">
+                        <td colspan="4" class="text-center text-muted">No employees in the SharePoint list yet.</td>
+                    </tr>
+                    <tr th:each="employee : ${listEmployees}">
+                        <td th:text="${employee.firstName}"></td>
+                        <td th:text="${employee.lastName}"></td>
+                        <td th:text="${employee.email}"></td>
+                        <td><a th:href="@{/showFormForUpdate/{id}(id=${employee.id})}" class="btn btn-primary">Update</a>&nbsp;
+                            <a th:href="@{/deleteEmployee/{id}(id=${employee.id})}" class="btn btn-danger"
+                               onclick="return confirm('Delete this employee from SharePoint?');">Delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>PRT Employee Management System</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+              crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <h1>PRT Employee Management System</h1>
+            <hr>
+            <h2>Update Employee</h2>
+            <br>
+            <form action="#" th:action="@{/saveEmployee}" th:object="${employee}" method="POST">
+                <!-- SharePoint list item ID -->
+                <input type="hidden" th:field="*{id}"/>
+                <input type="text" th:field="*{firstName}" required
+                       class="form-control mb-4 col-4">
+                <input type="text" th:field="*{lastName}" required
+                       class="form-control mb-4 col-4">
+                <input type="email" th:field="*{email}" required
+                       class="form-control mb-4 col-4">
+                <button type="submit" class="btn btn-info col-2">Update Employee</button>
+            </form>
+            <hr>
+            <a th:href="@{/index}"> Back to Employee List</a>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>PRT Employee Management System - Sign in</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+              crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container my-4" style="max-width: 560px;">
+            <h1>PRT Employee Management System</h1>
+            <hr>
+            <div class="alert alert-success" th:if="${loggedOut}">You have signed out.</div>
+            <div class="alert alert-danger" th:if="${errorMessage != null}">
+                <strong>Sign-in failed:</strong> <span th:text="${errorMessage}">error</span>
+            </div>
+            <p>Employee records are stored in the University of Dundee SharePoint site
+               <em>MentorMeetingSystem</em>. Sign in with your University Microsoft account to continue.</p>
+            <a th:href="@{/oauth2/authorization/azure}" class="btn btn-primary">Sign in with University of Dundee account</a>
+        </div>
+    </body>
+</html>

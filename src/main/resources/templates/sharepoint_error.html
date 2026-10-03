@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>PRT Employee Management System - SharePoint error</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+              crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container my-2">
+            <h1>PRT Employee Management System</h1>
+            <hr>
+            <div class="alert alert-danger">
+                <h4 class="alert-heading">Could not reach the SharePoint list
+                    (<span th:text="${status}">500</span>)</h4>
+                <p class="mb-2" th:text="${message}">message</p>
+                <p class="mb-0" th:if="${hint != null and !#strings.isEmpty(hint)}"><strong>What to check:</strong>
+                    <span th:text="${hint}">hint</span></p>
+            </div>
+            <a th:href="@{/index}" class="btn btn-primary">Back to Employee List</a>
+        </div>
+    </body>
+</html>
